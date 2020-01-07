@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Vue实例</title>
+    </head>
+    <body>
+        <div id="app1">
+            <span>{{msg}}</span>
+        </div>
+
+        <script src="vue.js"></script>
+        <script>
+            // 实例创建时data中已有数据都是响应式的
+            let data = {
+                a: 1
+            };
+            let app1 = new Vue({
+                el: "#app1",
+                data: data,
+                created() {
+                    console.log("app1 is created!")
+                },
+            });
+            console.log("app1.a === data.a  ", app1.a === data.a);
+            app1.a = 2;
+            console.log("After set app1.a = 2, data.a = ", data.a);
+            data.a = 3;
+            console.log("After set data.a = 3, app1.a = ", app1.a);
+            // data中数据不为响应式的例子，对b进行修改不会有响应式的变化
+            app1.b = 1;
+            // 可以使用Object.freeze阻止响应式变化
+            // Object.freeze(data);
+            console.log("app1.$data === data   ", app1.$data === data);
+            console.log(app1.$el);
+            // 监控app1的a数据变化，在控制台改变app1.a的值即可观察到
+            app1.$watch("a", function(newValue, oldValue) {
+                console.log(
+                    "The old value is ",
+                    oldValue,
+                    " and the new value is ",
+                    newValue
+                );
+            });
+        </script>
+    </body>
+</html>
