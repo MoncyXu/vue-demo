@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>模板语法</title>
+    </head>
+    <body>
+        <div id="app1">
+            <!-- 一次性插值，不会跟随数据改变 -->
+            <p>{{msg}}</p>
+            <p v-once>{{msg}}</p>
+            <!-- v-html 解析html -->
+            <p v-html="htmlTest"></p>
+            <!-- v-bind:  :  绑定属性 -->
+            <p :style="{'color' : myColor }">It's show time.</p>
+            <!-- 动态绑定不能用驼峰式命名 -->
+            <button @[eventname]="showMsg">点我</button>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            let app1 = new Vue({
+                el: "#app1",
+                data() {
+                    return {
+                        msg: "saasdfdsaf",
+                        htmlTest: "<div style='color:red;'>ahahhaha</div>",
+                        myColor: "blue",
+                        eventname: "click"
+                    };
+                },
+                methods: {
+                    showMsg() {
+                        alert("Long time no see!");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
