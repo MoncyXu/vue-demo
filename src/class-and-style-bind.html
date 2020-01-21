@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Class与Style绑定</title>
+        <style>
+            .txt-red {
+                color: red;
+            }
+
+            .txt-blue {
+                color: blue;
+            }
+
+            .bg-red {
+                background-color: red;
+                color: #fff;
+            }
+
+            .bg-blue {
+                background-color: blue;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app1">
+            <p :class="{'txt-red': isRed}">isRed : {{isRed}}</p>
+            <p :class="{'txt-blue': isBlue}">isBlue : {{isBlue}}</p>
+            <p :class="classObject">classObject : {{classObject}}</p>
+            <p :class="[class1,class2]">
+                class1 : {{class1}}, class2 : {{class2}}
+            </p>
+            <p :class="[isTest ? class1 : class2]">isTest : {{isTest}}</p>
+        </div>
+        <script src="vue.js"></script>
+        <script>
+            let app1 = new Vue({
+                el: "#app1",
+                data: {
+                    isRed: true,
+                    isBlue: true,
+                    classObject: {
+                        "bg-red": true,
+                        "txt-blue": true
+                    },
+                    class1: "bg-blue",
+                    class2: "txt-red",
+                    isTest: false
+                }
+            });
+        </script>
+    </body>
+</html>
